@@ -14,7 +14,7 @@ export default function Nav({ user }: Session) {
   return (
     <nav className="flex justify-between items-center py-12">
       <Link href={"/"}>
-        <h1>Styled</h1>
+        <h1 className="font-bold">Styled</h1>
       </Link>
       <ul className="flex items-center gap-12">
         {/* toggle the cart */}
@@ -46,13 +46,15 @@ export default function Nav({ user }: Session) {
         )}
         {user && (
           <li>
-            <Image
-              src={user?.image as string}
-              alt={user.name as string}
-              width={36}
-              height={36}
-              className="rounded-full"
-            />
+            <Link href={"/dashboard"}>
+              <Image
+                src={user?.image as string}
+                alt={user.name as string}
+                width={36}
+                height={36}
+                className="rounded-full"
+              />
+            </Link>
           </li>
         )}
       </ul>
