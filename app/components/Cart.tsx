@@ -29,7 +29,7 @@ export default function Cart() {
       <motion.div
         layout
         onClick={(e) => e.stopPropagation()}
-        className="bg-white absolute right-0 top-0 h-screen p-12 overflow-y-scroll text-gray-700 w-full lg:w-2/5"
+        className="bg-base-300 absolute right-0 top-0 h-screen p-12 overflow-y-scroll w-full lg:w-2/5"
       >
         {cartStore.onCheckout === "cart" && (
           <button
@@ -51,9 +51,13 @@ export default function Cart() {
         {cartStore.onCheckout === "cart" && (
           <>
             {cartStore.cart.map((item) => (
-              <motion.div layout key={item.id} className="flex py-4 gap-4">
+              <motion.div
+                layout
+                key={item.id}
+                className="flex items-center justify-start p-4 gap-4 bg-base-100 my-4 rounded-lg"
+              >
                 <Image
-                  className="rounded-md h-24 w-full object-cover"
+                  className="rounded-md h-24 w-24 object-cover"
                   src={item.image}
                   alt={item.name}
                   width={500}
@@ -62,34 +66,36 @@ export default function Cart() {
                 <div>
                   <h2>{item.name}</h2>
                   {/* update quantity of a product */}
-                  <div className="flex gap-2">
+                  <div className="flex gap-6 items-center justify-center">
                     <h2>Quantity: {item.quantity}</h2>
-                    <button
-                      onClick={() =>
-                        cartStore.removedProduct({
-                          id: item.id,
-                          image: item.image,
-                          name: item.name,
-                          unit_amount: item.unit_amount,
-                          quantity: item.quantity,
-                        } as AddCartType)
-                      }
-                    >
-                      <IoRemoveCircle />
-                    </button>
-                    <button
-                      onClick={() =>
-                        cartStore.addProduct({
-                          id: item.id,
-                          image: item.image,
-                          name: item.name,
-                          unit_amount: item.unit_amount,
-                          quantity: item.quantity,
-                        } as AddCartType)
-                      }
-                    >
-                      <IoAddCircle />
-                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() =>
+                          cartStore.removedProduct({
+                            id: item.id,
+                            image: item.image,
+                            name: item.name,
+                            unit_amount: item.unit_amount,
+                            quantity: item.quantity,
+                          } as AddCartType)
+                        }
+                      >
+                        <IoRemoveCircle />
+                      </button>
+                      <button
+                        onClick={() =>
+                          cartStore.addProduct({
+                            id: item.id,
+                            image: item.image,
+                            name: item.name,
+                            unit_amount: item.unit_amount,
+                            quantity: item.quantity,
+                          } as AddCartType)
+                        }
+                      >
+                        <IoAddCircle />
+                      </button>
+                    </div>
                   </div>
                   <p className="text-sm">
                     {item.unit_amount && formatPrice(item.unit_amount)}
@@ -105,7 +111,7 @@ export default function Cart() {
             <p>Total: {formatPrice(totalPrice)}</p>
             <button
               onClick={() => cartStore.setCheckout("checkout")}
-              className="py-2 mt-4 bg-gray-500 w-full rounded-md text-white"
+              className="py-2 mt-4 bg-primary w-full rounded-md text-white"
             >
               Checkout
             </button>

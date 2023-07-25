@@ -31,10 +31,10 @@ export default function OrderConfirmed() {
         <Image src={dance} className="max-w-64 py-8 rounded-xl" alt="dancing kid" />
         <div className="flex justify-center align-center gap-8">
           <Link href={"/dashboard"} onClick={checkoutOrder}>
-            <button className="hover:bg-gray-100 h-12 rounded-md font-bold w-48">Check your order</button>
+            <button className="btn btn-primary">Check your order</button>
           </Link>
-          <button className="hover:bg-gray-100 h-12 rounded-md font-bold w-48" onClick={checkoutOrder}>
-            Ok
+          <button className="btn btn-accent text-white" onClick={checkoutOrder}>
+            OK Fine!
           </button>
         </div>
       </div>

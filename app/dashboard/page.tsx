@@ -1,13 +1,12 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import formatPrice from "@/util/PriceFormat";
-import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
+import { prisma } from "@/util/prisma";
 
 export const revalidate = 0;
 
 const fetchOrders = async () => {
-  const prisma = new PrismaClient();
   const user = await getServerSession(authOptions);
   if (!user) {
     return null;
@@ -37,9 +36,11 @@ export default async function Dashboard() {
         {orders.map((order) => (
           <div
             key={order.id}
-            className="rounded-lg p-8 my-12 bg-red-400 text-white"
+            className="rounded-lg p-8 my-12 bg-base-200 text-black"
           >
-            <h2>Order reference: {order.id}</h2>
+            <h2>
+              <span className="opacity-75">Order reference:</span> {order.id}
+            </h2>
             <p>{`Time: ` + new Date(order.createdDate)}</p>
             <p className="font-medium py-2">
               Status:{" "}
@@ -59,15 +60,17 @@ export default async function Dashboard() {
             <div className="flex gap-8">
               {order.products.map((product) => (
                 <div className="py-2" key={product.id}>
-                  <h2 className="py-2">{product.name}</h2>
                   <div className="flex items-center gap-4">
-                    <Image
-                      src={product.image!}
-                      alt={product.name}
-                      width={100}
-                      height={100}
-                      className="w-12 h-12 object-cover rounded-xl"
-                    />
+                    <div className="flex-col justify-center items-center">
+                      <Image
+                        src={product.image!}
+                        alt={product.name}
+                        width={100}
+                        height={100}
+                        className="w-12 h-12 object-cover rounded-xl"
+                      />
+                      <h2 className="py-2">{product.name}</h2>
+                    </div>
                     <p>{formatPrice(product.unit_amount)}</p>
                     <p>Quantity: {product.quantity}</p>
                   </div>
