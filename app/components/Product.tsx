@@ -12,12 +12,11 @@ export default function Product({
   metadata,
 }: AddCartType) {
   const { features } = metadata;
-  const queryId = id;
   return (
     <Link
       href={{
         pathname: `/product/${id}`,
-        query: { name, image, unit_amount, queryId, description, features },
+        query: { name, image, unit_amount, id, description, features },
       }}
     >
       <div>

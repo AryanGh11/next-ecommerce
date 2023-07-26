@@ -9,7 +9,7 @@ const getProducts = async () => {
   const productsWithPrices = await Promise.all(
     products.data.map(async (product) => {
       const prices = await stripe.prices.list({ product: product.id });
-      const features = product.metadata.features || ""
+      const features = product.metadata.features || "";
       return {
         id: product.id,
         name: product.name,
