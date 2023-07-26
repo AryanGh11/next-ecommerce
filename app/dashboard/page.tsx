@@ -36,7 +36,7 @@ export default async function Dashboard() {
         {orders.map((order) => (
           <div
             key={order.id}
-            className="rounded-lg p-8 my-12 bg-base-300"
+            className="rounded-lg p-8 my-12 bg-secondary"
           >
             <h2>Order reference: {order.id}</h2>
             <p>{`Time: ` + new Date(order.createdDate)}</p>
@@ -49,7 +49,7 @@ export default async function Dashboard() {
                     : order.status === "pending"
                     ? "bg-yellow-400"
                     : "bg-red-500"
-                } py-1 rounded-md px-2 mx-2 text-sm text-white`}
+                } py-1 rounded-md px-2 mx-2 text-sm text-base-100`}
               >
                 {order.status}
               </span>
