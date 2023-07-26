@@ -8,13 +8,13 @@ export default function DarkLigh() {
     <label className="swap swap-rotate">
       {/* this hidden checkbox controls the state */}
       <input
-        defaultChecked={themeStore.mode === "acid" ? false : true}
+        defaultChecked={themeStore.mode === "wireframe" ? false : true}
         type="checkbox"
         onClick={() => {
-          if (themeStore.mode === "acid") {
-            themeStore.toggleMode("night");
+          if (themeStore.mode === "wireframe") {
+            themeStore.toggleMode("black");
           } else {
-            themeStore.toggleMode("acid");
+            themeStore.toggleMode("wireframe");
           }
         }}
       />

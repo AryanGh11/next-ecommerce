@@ -12,7 +12,7 @@ export default function Hydrate({ children }: { children: ReactNode }) {
   //wait untill Nextjs rehydration completes
   useEffect(() => {
     setIsHydrated(true);
-    if (themeStore.mode === "acid") {
+    if (themeStore.mode === "wireframe") {
       setLoadingTheme("#ffff");
     } else {
       setLoadingTheme("#0000");
@@ -22,7 +22,7 @@ export default function Hydrate({ children }: { children: ReactNode }) {
     <>
       {isHydreated ? (
         <body
-          className="px-4 lg:px-48 font-roboto"
+          className="px-4 lg:px-24 font-roboto"
           data-theme={themeStore.mode}
         >
           {children}

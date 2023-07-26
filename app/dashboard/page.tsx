@@ -36,11 +36,9 @@ export default async function Dashboard() {
         {orders.map((order) => (
           <div
             key={order.id}
-            className="rounded-lg p-8 my-12 bg-base-200 text-black"
+            className="rounded-lg p-8 my-12 bg-base-300"
           >
-            <h2>
-              <span className="opacity-75">Order reference:</span> {order.id}
-            </h2>
+            <h2>Order reference: {order.id}</h2>
             <p>{`Time: ` + new Date(order.createdDate)}</p>
             <p className="font-medium py-2">
               Status:{" "}

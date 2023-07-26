@@ -23,7 +23,7 @@ export default function Checkout() {
   >("flat");
   useEffect(() => {
     //Set the theme of stripe
-    if (themeStore.mode === "acid") {
+    if (themeStore.mode === "wireframe") {
       setStripeTheme("flat");
     } else {
       setStripeTheme("night");

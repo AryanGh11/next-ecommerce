@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCartStore } from "@/store";
 import formatPrice from "@/util/PriceFormat";
-import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
+import { IoMdAdd, IoMdRemove } from "react-icons/io";
 import basket from "@/public/cart.png";
 import { AddCartType } from "@/types/AddCartType";
 import { motion, AnimatePresence } from "framer-motion";
@@ -54,53 +54,55 @@ export default function Cart() {
               <motion.div
                 layout
                 key={item.id}
-                className="flex items-center justify-start p-4 gap-4 bg-base-100 my-4 rounded-lg"
+                className="flex items-center justify-between p-4 bg-secondary my-4 rounded-lg pr-8"
               >
-                <Image
-                  className="rounded-md h-24 w-24 object-cover"
-                  src={item.image}
-                  alt={item.name}
-                  width={500}
-                  height={500}
-                />
-                <div>
-                  <h2>{item.name}</h2>
-                  {/* update quantity of a product */}
-                  <div className="flex gap-6 items-center justify-center">
-                    <h2>Quantity: {item.quantity}</h2>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() =>
-                          cartStore.removedProduct({
-                            id: item.id,
-                            image: item.image,
-                            name: item.name,
-                            unit_amount: item.unit_amount,
-                            quantity: item.quantity,
-                          } as AddCartType)
-                        }
-                      >
-                        <IoRemoveCircle />
-                      </button>
-                      <button
-                        onClick={() =>
-                          cartStore.addProduct({
-                            id: item.id,
-                            image: item.image,
-                            name: item.name,
-                            unit_amount: item.unit_amount,
-                            quantity: item.quantity,
-                          } as AddCartType)
-                        }
-                      >
-                        <IoAddCircle />
-                      </button>
+                <div className="flex gap-4 items-center">
+                  <Image
+                    className="rounded-md h-24 w-24 object-cover"
+                    src={item.image}
+                    alt={item.name}
+                    width={500}
+                    height={500}
+                  />
+                  <div className="flex flex-col gap-4">
+                    <h2>{item.name}</h2>
+                    {/* update quantity of a product */}
+                    <div className="flex gap-4 items-center justify-start">
+                      <h2>Quantity: {item.quantity}</h2>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() =>
+                            cartStore.removedProduct({
+                              id: item.id,
+                              image: item.image,
+                              name: item.name,
+                              unit_amount: item.unit_amount,
+                              quantity: item.quantity,
+                            } as AddCartType)
+                          }
+                        >
+                          <IoMdRemove />
+                        </button>
+                        <button
+                          onClick={() =>
+                            cartStore.addProduct({
+                              id: item.id,
+                              image: item.image,
+                              name: item.name,
+                              unit_amount: item.unit_amount,
+                              quantity: item.quantity,
+                            } as AddCartType)
+                          }
+                        >
+                          <IoMdAdd />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <p className="text-sm">
-                    {item.unit_amount && formatPrice(item.unit_amount)}
-                  </p>
                 </div>
+                <p className="text-lg font-bold text-primary">
+                  {item.unit_amount && formatPrice(item.unit_amount)}
+                </p>
               </motion.div>
             ))}
           </>
@@ -111,7 +113,7 @@ export default function Cart() {
             <p>Total: {formatPrice(totalPrice)}</p>
             <button
               onClick={() => cartStore.setCheckout("checkout")}
-              className="py-2 mt-4 bg-primary w-full rounded-md text-white"
+              className="py-2 mt-4 bg-primary w-full rounded-md text-base-100"
             >
               Checkout
             </button>

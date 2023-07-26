@@ -71,14 +71,14 @@ export const useCartStore = create<CartState>()(
 );
 
 type ThemeState = {
-  mode: "acid" | "night";
-  toggleMode: (theme: "acid" | "night") => void;
+  mode: "wireframe" | "black";
+  toggleMode: (theme: "wireframe" | "black") => void;
 };
 
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
-      mode: "acid",
+      mode: "wireframe",
       toggleMode: (theme) => set((state) => ({ mode: theme })),
     }),
     { name: "theme-store" }
